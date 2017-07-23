@@ -1,0 +1,19 @@
+{
+  "name": "tst-storm",
+  "version": "1.0.0",
+  "description": "This is a test for stormsecurity",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrevvalle/tst-storm.git"
+  },
+  "author": "André Valle <andrevvalle@icloud.com> (http://andre.ooo/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andrevvalle/tst-storm/issues"
+  },
+  "homepage": "https://github.com/andrevvalle/tst-storm#readme"
+}
