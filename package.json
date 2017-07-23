@@ -4,7 +4,8 @@
   "description": "This is a test for stormsecurity",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "npm test",
+    "lint": "./node_modules/.bin/eslint src/*.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/andrevvalle/tst-storm/issues"
   },
-  "homepage": "https://github.com/andrevvalle/tst-storm#readme"
+  "homepage": "https://github.com/andrevvalle/tst-storm#readme",
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.2",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0"
+  }
 }
