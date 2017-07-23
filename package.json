@@ -4,10 +4,12 @@
   "description": "This is a test for stormsecurity",
   "main": "index.js",
   "scripts": {
-    "prepush": "npm run lint",
     "test": "npm test",
+    "start": "webpack-dev-server",
     "lint": "./node_modules/.bin/eslint ./src/*.js",
-    "start": "webpack-dev-server"
+    "prepush": "npm run lint",
+    "build": "./node_modules/.bin/webpack --colors --progress",
+    "watch": "npm run build -- --watch"
   },
   "repository": {
     "type": "git",
