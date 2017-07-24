@@ -1,15 +1,17 @@
+// require('rmdir')('./dist')
+
+const nodeEnv = process.env.NODE_ENV || 'production'
+
 const webpack = require('webpack')
 const path = require('path')
+
+// Import plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const rmdir = require('rmdir')
-
-const NODE_ENV = process.env.NODE_ENV || 'production'
-
-rmdir('./dist')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 // Configuration Plugins
 const DesinePluginConfig = new webpack.DefinePlugin({
-  'process.env': { NODE_ENV: JSON.stringify(NODE_ENV) }
+  'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
 })
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
@@ -21,9 +23,9 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 
 const UglifyJsPluginConfig = new webpack.optimize.UglifyJsPlugin({
   compress: {
-    warnings: false,
-    unsafe: true,
-    unsafe_comps: true
+    dead_code: true,
+    unused: true,
+    warnings: false
   },
   output: {
     comments: false
@@ -31,30 +33,44 @@ const UglifyJsPluginConfig = new webpack.optimize.UglifyJsPlugin({
   sourceMap: true
 })
 
+const ExtractTextPluginConfig = new ExtractTextPlugin({
+  filename: 'main.css',
+  options: {
+    publicPath: './dist/stylesheets/'
+  }
+})
+
 module.exports = {
-  devtool: 'source-map',
+  devtool: nodeEnv === 'development' ? 'source-map' : '@cheap-source-map',
   entry: './src/main.js',
   output: {
     path: path.resolve('dist'),
     filename: 'main.bundle.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         loader: 'babel-loader',
         exclude: /node_modules/
       },
       {
-        test: /\.jsx$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/
+        test: /\.(css|scss)$/,
+        loader: ExtractTextPlugin.extract({
+          loader: ['css-loader', 'sass-loader']
+        })
       }
     ]
+  },
+  devServer: {
+    inline: true,
+    contentBase: './dist',
+    port: 9000
   },
   plugins: [
     DesinePluginConfig,
     UglifyJsPluginConfig,
-    HtmlWebpackPluginConfig
+    HtmlWebpackPluginConfig,
+    ExtractTextPluginConfig
   ]
 }

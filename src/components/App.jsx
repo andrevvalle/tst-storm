@@ -1,4 +1,5 @@
 import React from 'react'
+// require('../index.scss')
 
 export default class App extends React.Component {
   render () {

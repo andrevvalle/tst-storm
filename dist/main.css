@@ -1,0 +1,9 @@
+body {
+  background: red; }
+  body h1 {
+    color: blue;
+    transition: all .2s ease-in; }
+
+/*
+//@ sourceMappingURL=main.css.map
+*/
