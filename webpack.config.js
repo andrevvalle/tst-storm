@@ -27,10 +27,12 @@ const UglifyJsPluginConfig = new webpack.optimize.UglifyJsPlugin({
   },
   output: {
     comments: false
-  }
+  },
+  sourceMap: true
 })
 
 module.exports = {
+  devtool: 'source-map',
   entry: './src/main.js',
   output: {
     path: path.resolve('dist'),
