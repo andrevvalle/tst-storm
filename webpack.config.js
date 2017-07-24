@@ -1,15 +1,39 @@
+const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const rmdir = require('rmdir')
+
+const NODE_ENV = process.env.NODE_ENV || 'production'
+
+rmdir('./dist')
+
+// Configuration Plugins
+const DesinePluginConfig = new webpack.DefinePlugin({
+  'process.env': { NODE_ENV: JSON.stringify(NODE_ENV) }
+})
+
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: './client/index.html',
+  title: 'Storm App',
+  template: './template/index.html',
   filename: 'index.html',
-  inject: 'body'
+  inject: true
+})
+
+const UglifyJsPluginConfig = new webpack.optimize.UglifyJsPlugin({
+  compress: {
+    warnings: false,
+    unsafe: true,
+    unsafe_comps: true
+  },
+  output: {
+    comments: false
+  }
 })
 
 module.exports = {
   entry: './src/main.js',
   output: {
-    path: path.resolve('client'),
+    path: path.resolve('dist'),
     filename: 'main.bundle.js'
   },
   module: {
@@ -26,5 +50,9 @@ module.exports = {
       }
     ]
   },
-  plugins: [HtmlWebpackPluginConfig]
+  plugins: [
+    DesinePluginConfig,
+    UglifyJsPluginConfig,
+    HtmlWebpackPluginConfig
+  ]
 }

@@ -5,11 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "npm test",
-    "start": "webpack-dev-server",
+    "start": "NODE_END='development' webpack-dev-server",
     "lint": "./node_modules/.bin/eslint ./src/*.js",
     "prepush": "npm run lint",
-    "build": "./node_modules/.bin/webpack --colors --progress",
-    "watch": "npm run build -- --watch"
+    "build": "./node_modules/.bin/webpack --colors --progress"
   },
   "repository": {
     "type": "git",
@@ -39,6 +38,7 @@
     "path": "^0.12.7",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "rmdir": "^1.2.0",
     "webpack": "^3.0.0-rc.2",
     "webpack-dev-server": "^2.6.1"
   }
