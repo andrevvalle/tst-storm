@@ -8,7 +8,21 @@
 --- | --- | --- | --- | --- |
 55+ ✔ | 54+ ✔ | 46+ ✔ |Nope ✘| Nope ✘ |
 
+## Prerequisites
+- Node  (I'm using node version > 8)
+
 ## How to Run
-
-1. First
-
+1. npm install
+```
+npm install
+```
+2. npm start for build development
+```
+npm start
+```
+3. Open: [http://localhost:9000](http://localhost:9000)
+4. Npm run for build production
+4.1 The production folder
+```
+npm run build
+```
