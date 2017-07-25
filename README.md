@@ -21,8 +21,9 @@ npm install
 npm start
 ```
 3. Open: [http://localhost:9000](http://localhost:9000)
+
 4. Npm run for build production
-4.1 The production folder
+    4.1 The production folder
 ```
 npm run build
 ```
