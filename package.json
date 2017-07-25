@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "classnames": "^2.2.5",
     "flexboxgrid": "^6.3.1",
     "install": "^0.10.1",
     "normalize.css": "^7.0.0",

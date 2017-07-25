@@ -1,22 +1,19 @@
-import React from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import cx from 'classnames'
 
-const ListShotsItem = (props) => {
-  console.info(props)
+class ListShotsItem extends Component {
+  constructor (props) {
+    super(props)
 
-  const {
-    title,
-    images,
-    comments_count,
-    likes_count,
-    views_count
-  } = props
+    this.state = {
+      toggleClass: false
+    }
 
-  let data = {
-    imgMain: images.teaser ? images.teaser : images.normal
+    this._toggleDesc = this._toggleDesc.bind(this)
   }
 
-  const renderTitle = () => {
+  _renderTitle (title) {
     if (title) {
       return <h2>{ title }</h2>
     }
@@ -24,32 +21,81 @@ const ListShotsItem = (props) => {
     return <h2>Untitle</h2>
   }
 
-  return (
-    <li className='list-shots--item'>
-      <div className='list-shots--item__title'>
-        { renderTitle() }
+  _descNumbers () {
+    const {
+      comments_count,
+      likes_count,
+      views_count
+    } = this.props
+
+    /*eslint-disable */
+    return (
+      <div className='list-shots--item__desc-numbers--wrapper'>
+        { likes_count && <span><strong>likes:</strong> {likes_count}</span>}
+        { comments_count && <span><strong>comments:</strong> {comments_count}</span>}
+        { views_count && <span><strong>views:</strong> {views_count}</span>}
       </div>
-      {
-        data.imgMain &&
-          <div className='list-shots--item__image'>
-            <img src={data.imgMain} />
-          </div>
-      }
-      <div className='list-shots--item__desc-numbers'>
-        <span><strong>likes:</strong> {likes_count}</span>
-        <span><strong>comments:</strong> {comments_count}</span>
-        <span><strong>views:</strong> {views_count}</span>
-      </div>
-    </li>
-  )
+    )
+    /*eslint-enable */
+  }
+
+  _toggleDesc () {
+    this.setState({
+      toggleClass: !this.state.toggleClass
+    })
+  }
+
+  render () {
+    const {
+      title,
+      images,
+      user,
+      description
+    } = this.props
+
+    let data = {
+      imgMain: images.teaser ? images.teaser : images.normal
+    }
+
+    return (
+      <li className={
+        cx(
+          'list-shots--item',
+          { show: this.state.toggleClass }
+        )} onClick={this._toggleDesc}>
+        <div className='list-shots--item__title'>
+          { this._renderTitle(title) }
+        </div>
+        {
+          data.imgMain &&
+            <div className='list-shots--item__image'>
+              <img src={data.imgMain} />
+            </div>
+        }
+        <div className='list-shots--item__desc-numbers'>
+          { this._descNumbers() }
+        </div>
+
+        <div className='list-shots--item__desc'>
+          {user.avatar_url && <img src={user.avatar_url} />}
+          {user.name && <h4>{ user.name }</h4>}
+          {description && <p dangerouslySetInnerHTML={{ __html: description }} />}
+        </div>
+
+        <button onClick={this._toggleDesc}>Hide description</button>
+      </li>
+    )
+  }
 }
 
 ListShotsItem.propTypes = {
   title: PropTypes.string,
+  description: PropTypes.string,
   images: PropTypes.object,
-  likes_count: PropTypes.num,
-  comments_count: PropTypes.num,
-  views_count: PropTypes.num
+  user: PropTypes.object,
+  'likes_count': PropTypes.number,
+  'comments_count': PropTypes.number,
+  'views_count': PropTypes.number
 }
 
 export default ListShotsItem
