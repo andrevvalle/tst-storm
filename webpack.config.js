@@ -63,11 +63,9 @@ module.exports = {
       },
       {
         test: /\.(css|scss)$/,
-        use: {
-          loader: ExtractTextPlugin.extract({
-            loader: ['css-loader', 'sass-loader']
-          })
-        }
+        loader: ExtractTextPlugin.extract({
+          loader: ['css-loader', 'sass-loader']
+        })
       }
     ]
   },
