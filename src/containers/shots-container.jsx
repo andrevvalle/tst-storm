@@ -5,9 +5,9 @@ import {connect} from 'react-redux'
 import {getShots} from '../actions/index'
 
 import axios from 'axios'
-import Shots from '../components/Shots.jsx'
+import Shots from '../components/organisms/Shots.jsx'
 
-class ListShots extends Component {
+class ShotsContainer extends Component {
   constructor (props) {
     super(props)
 
@@ -41,7 +41,7 @@ class ListShots extends Component {
   }
 }
 
-ListShots.propTypes = {
+ShotsContainer.propTypes = {
   shots: PropTypes.object,
   getShots: PropTypes.func
 }
@@ -61,4 +61,4 @@ function matchDispatchToProps (dispatch) {
   )
 }
 
-export default connect(mapStateToProps, matchDispatchToProps)(ListShots)
+export default connect(mapStateToProps, matchDispatchToProps)(ShotsContainer)

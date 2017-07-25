@@ -1,8 +1,8 @@
 import React from 'react'
-import ListShots from '../containers/list-shots.jsx'
+import ShotsContainer from '../containers/shots-container.jsx'
 
-export default class App extends React.Component {
-  render () {
-    return <ListShots />
-  }
-}
+require('../../node_modules/flexboxgrid/dist/flexboxgrid.min.css')
+require('../../node_modules/normalize.css/normalize.css')
+require('../index.scss')
+
+export default () => <ShotsContainer />

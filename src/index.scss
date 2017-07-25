@@ -1,9 +1,32 @@
-@import '../node_modules/flexboxgrid/dist/flexboxgrid.min.css';
+.list-shots--wrapper {
+  padding: 0;
+  list-style: none;
+}
 
-body {
-  background: red;
+.list-shots--item {
+  background: #dedede;
+  margin-bottom: 20px;
+}
 
-  h1 {
-    color: blue;
+.list-shots--item__title {
+  margin-bottom: 15px;
+
+  h2 {
+    margin: 0;
+  }
+}
+
+.list-shots--item {
+  padding: 15px 0;
+  border: 1px solid #000;
+}
+
+.list-shots--item__desc-numbers {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+
+  strong {
+    font-weight: bold;
   }
 }
