@@ -53,16 +53,17 @@ class ListShotsItem extends Component {
       description
     } = this.props
 
+    const listItemClassName = cx(
+      'list-shots--item',
+      { show: this.state.toggleClass }
+    )
+
     let data = {
       imgMain: images.teaser ? images.teaser : images.normal
     }
 
     return (
-      <li className={
-        cx(
-          'list-shots--item',
-          { show: this.state.toggleClass }
-        )} onClick={this._toggleDesc}>
+      <li className={listItemClassName} onClick={this._toggleDesc}>
         <div className='list-shots--item__title'>
           { this._renderTitle(title) }
         </div>
