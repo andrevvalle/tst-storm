@@ -11,7 +11,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 // Configuration Plugins
 const DesinePluginConfig = new webpack.DefinePlugin({
-  'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
+  'process.env': {
+    'NODE_ENV': JSON.stringify(nodeEnv)
+  }
 })
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
@@ -36,7 +38,7 @@ const UglifyJsPluginConfig = new webpack.optimize.UglifyJsPlugin({
 const ExtractTextPluginConfig = new ExtractTextPlugin({
   filename: 'main.css',
   options: {
-    publicPath: './dist/stylesheets/'
+    publicPath: './dist/'
   }
 })
 
@@ -51,14 +53,21 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [ 'es2015', 'react', 'stage-2' ]
+          }
+        }
       },
       {
         test: /\.(css|scss)$/,
-        loader: ExtractTextPlugin.extract({
-          loader: ['css-loader', 'sass-loader']
-        })
+        use: {
+          loader: ExtractTextPlugin.extract({
+            loader: ['css-loader', 'sass-loader']
+          })
+        }
       }
     ]
   },
