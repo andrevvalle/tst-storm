@@ -24,12 +24,16 @@ npm start
 
 
 ## How to Run Production
-1. Npm run for build production
+1. npm install
+```
+npm install
+```
+2. Npm run for build production
 ```
 npm run build
 ```
 
-2. The production folder
+3. The production folder
 ```
 ./dist
 ```
