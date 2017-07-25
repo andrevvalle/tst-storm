@@ -11,7 +11,7 @@
 ## Prerequisites
 - Node  (I'm using node version > 8)
 
-## How to Run
+## How to Run Development
 1. npm install
 ```
 npm install
@@ -22,8 +22,14 @@ npm start
 ```
 3. Open: [http://localhost:9000](http://localhost:9000)
 
-4. Npm run for build production
-    4.1 The production folder
+
+## How to Run Production
+1. Npm run for build production
 ```
 npm run build
+```
+
+2. The production folder
+```
+./dist
 ```
